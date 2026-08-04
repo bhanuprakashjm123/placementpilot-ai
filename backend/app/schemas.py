@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from uuid import UUID
+from typing import List
 
 
 # ---------- Request Schemas (data coming IN) ----------
@@ -26,9 +27,37 @@ class UserResponse(BaseModel):
     created_at: datetime
 
     class Config:
-        from_attributes = True  # allows Pydantic to read data from SQLAlchemy objects
+        from_attributes = True
 
 
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+# ---------- Role Schemas ----------
+
+class RoleListItem(BaseModel):
+    id: UUID
+    title: str
+    slug: str
+    average_salary: str
+
+    class Config:
+        from_attributes = True
+
+
+class RoleDetail(BaseModel):
+    id: UUID
+    title: str
+    slug: str
+    job_description: str
+    skills_required: List[str]
+    hiring_companies: List[str]
+    average_salary: str
+    learning_roadmap: List[str]
+    interview_pattern: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
