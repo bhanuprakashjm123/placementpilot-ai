@@ -4,7 +4,6 @@ import api from "../api/axios";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,12 +37,20 @@ function Dashboard() {
       <div className="max-w-2xl mx-auto bg-slate-800 rounded-xl p-8 shadow-lg">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-          <button
-            onClick={handleLogout}
-            className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg px-4 py-2 transition"
-          >
-            Logout
-          </button>
+          <div className="flex gap-3 items-center">
+            <button
+              onClick={() => navigate("/roadmap")}
+              className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg px-4 py-2 transition"
+            >
+              Career Roadmap
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium rounded-lg px-4 py-2 transition"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         <div className="space-y-2 text-slate-300">
